@@ -1,0 +1,172 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<HEAD>
+<TITLE>.NET Framework 4.5 Readme.htm</TITLE><style type="text/css"> UL.toc, OL.toc { list-style: none; font-family: arial } UL, OL { font-family: arial } LI.tocline1 { font-weight: bold; font-family: arial } LI.tocline2 { font-weight: normal; font-family: arial; text-indent: 2em; }LI.tocline3 { font-weight: normal; font-family: arial; text-indent: 4em; }P { font-size: 0.8em; font-family: arial }H1, H2, H3, H4, span, LI { font-family: arial }</style></HEAD>
+<BODY>
+<H1>
+Microsoft .NET Framework 4.5 추가 정보
+</H1>
+<P>게시 날짜: 2012년 9월 28일</P>
+    <P class="style3">최신 버전의 추가 정보를 보려면 <a href="http://go.microsoft.com/fwlink/?LinkId=255964">여기를 클릭</a>하십시오.</P>
+<H2>
+<A name="TOC"></A>
+</H2>
+<UL class="toc">
+<li class="tocline1">1. <A href="#.Net Known Issues">.Net 알려진 문제</A></li>
+<li class="tocline2">1.1. <A href="#NetFx Installation">NetFx 설치</A></li>
+<li class="tocline2">1.2. <A href="#NetFx Uninstallation">NetFx 제거</A></li>
+<li class="tocline2">1.3. <A href="#.Net Product Issues">.Net 제품 문제</A></li>
+<li class="tocline3">1.3.1. <A href="#General Issues">일반적인 문제</A></li>
+<li class="tocline3">1.3.2. <A href="#ASP.NET">ASP.NET</A></li>
+<li class="tocline3">1.3.3. <A href="#Winforms">Winforms</A></li>
+<li class="tocline3">1.3.4. <A href="#Parallel Programming">병렬 프로그래밍</A></li>
+<li class="tocline3">1.3.5. <A href="#Managed Extensibility Framework">Managed Extensibility Framework</A></li>
+<li class="tocline3">1.3.6. <A href="#Entity Framework">Entity Framework</A></li>
+<li class="tocline3">1.3.7. <A href="#LINQ to SQL">LINQ to SQL</A></li>
+<li class="tocline3">1.3.8. <A href="#Windows Communication Foundation (WCF)">WCF(Windows Communication Foundation)</A></li>
+<li class="tocline3">1.3.9. <A href="#Windows Presentation Foundation (WPF)">WPF(Windows Presentation Foundation)</A></li>
+<li class="tocline3">1.3.10. <A href="#Windows Workflow Foundation (WF)">Windows WF(Workflow Foundation)</A></li>
+<li class="tocline1">2. <A href="#.Net Maintenance">.Net 유지 관리</A></li>
+<li class="tocline1">3. <A href="#Related Links">관련 링크</A></li>
+</UL>
+<H2>
+1. <A name=".Net Known Issues">.Net 알려진 문제</A>
+</H2>
+<H3>
+1.1 <A name="NetFx Installation">NetFx 설치</A>
+</H3>
+<P><B> 1.1.1 Windows 8에서 .NET Framework 4.5 언어 팩을 사용할 수 없음 </P></B>
+<p>.NET Framework 4.5는 운영 체제의 구성 요소이기 때문에 .NET Framework 4.5 언어 팩을 Windows 8 운영 체제에 설치할 수 없습니다. 지원되는 이전 버전의 Windows에 .NET Framework 4.5 언어 팩을 설치할 수 있습니다.</p>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<p>Windows 8 운영 체제용 언어 팩을 다운로드하거나, 지역화된 버전의 Windows 8을 설치하여 .NET Framework 4.5용 지역화된 리소스를 가져옵니다.</p>
+<P><B> 1.1.2 .NET Framework 4.5 설치에 실패하거나 설치를 취소하면 응용 프로그램 풀이 2.0으로 되돌려짐 </P></B>
+<P>.NET Framework 4에서 .NET Framework 4.5 RTM 릴리스로 업그레이드하는 경우 설치가 취소되거나 실패하면 .NET Framework가 버전 4로 되돌려집니다. 그러나 ASP.NET 4도 등록 취소되고 IIS의 모든 응용 프로그램 풀이 .NET Framework 2.0을 대상으로 하도록 설정됩니다.</p>
+<P>이 경우 ASP.NET 4 기반 웹 응용 프로그램을 검색하면 "compilation" 요소의 "targetFramework" 특성을 인식할 수 없다고 보고하는 구성 오류가 발생합니다.</p>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<P>이 문제를 해결하려면</p>
+<ol>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">아래의 옵션 A나 옵션 B를 완료하여 잘못된 등록을 수정합니다(A와 B를 둘 다 완료할 필요는 없음).</li>
+<ul>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">다음 명령을 사용해 ASP.NET IIS 등록 도구(aspnet_regiis)를 실행하여 ASP.NET 4를 다시 등록합니다.</li>
+<i>%windir%\Microsoft.Net\Framework(64)\v4.0.30319\aspnet_regiis.exe -iru -enable</i>
+<P> -또는-</p>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">설치 프로그램을 다시 실행하고 복구 옵션을 선택하여 .NET Framework 4 Extended Profile을 복구합니다.</li></ul><br />
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">또한 업그레이드가 실패하기 전에 ASP.NET 4를 대상으로 하는 사용자 지정 응용 프로그램 풀이 있었던 경우 IIS 관리자(inetmgr.exe)를 사용하여 ASP.NET 4를 대상으로 하도록 수동으로 다시 설정합니다.</li>
+</ol>
+<H3>
+1.2 <A name="NetFx Uninstallation">NetFx 제거</A>
+</H3>
+<P><B> 1.2.1 Windows 8 또는 Windows Server 2012에서 .NET Framework 4.5를 제거한 후에 ASP.NET 2.0 및 3.5가 작동하지 않음 </P></B>
+<P>Windows 8 및 Windows Server 2012에서 ASP.NET 2.0 및 3.5를 사용하려면 ASP.NET 4.5 기능을 사용해야 합니다. .NET Framework 4.5를 제거하거나 사용하지 않으면 ASP.NET 2.0 및 3.5 응용 프로그램이 더 이상 실행되지 않습니다.</p>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<p><strong>Windows 8의 경우</strong></p>
+<p>제어판에서 ASP.NET 4.5 기능을 사용합니다.</p>
+<ol>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">제어판을 엽니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;"><strong>프로그램</strong>을 선택합니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;"><b>프로그램 및 기능</b> 머리글 아래에서 <b>Windows 기능 사용/사용 안 함</b>을 선택합니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;"><b>.NET Framework 4.5 Advanced Services</b> 노드를 확장합니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;"><b>ASP.NET 4.5</b> 확인란을 선택합니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;"><strong>확인</strong>을 선택합니다.</li></ol>
+<p><strong>Windows Server 2012의 경우</strong></p>
+<p>IIS 학습 센터에서 <a href="http://go.microsoft.com/fwlink/?LinkID=258861&amp;clcid=0x409">IIS 8.0 Using ASP.NET 3.5 and ASP.NET 4.5</a>를 참조하십시오.</p>
+<H3>
+1.3 <A name=".Net Product Issues">.Net 제품 문제</A>
+</H3>
+<H4>
+1.3.1 <A name="General Issues">일반적인 문제</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.2 <A name="ASP.NET">ASP.NET</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.3 <A name="Winforms">Winforms</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.4 <A name="Parallel Programming">병렬 프로그래밍</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.5 <A name="Managed Extensibility Framework">Managed Extensibility Framework</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.6 <A name="Entity Framework">Entity Framework</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.7 <A name="LINQ to SQL">LINQ to SQL</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.8 <A name="Windows Communication Foundation (WCF)">WCF(Windows Communication Foundation)</A>
+</H4>
+<P><B> 1.3.8.1 WCF 4.5에서 기존 XML serialization 코드 실행 시 발생하는 문제 </P></B>
+<p>WCF(Windows Communication Foundation) 4.5에서는 XmlSerializer 클래스가 최적화되어 C# 컴파일러에 대한 종속성이 제거되었습니다. 이로 인해 콜드 시작 시나리오에서 성능이 크게 개선됩니다. 하지만 이로 인해 WCF 4에서 컴파일되었지만 WCF 4.5에 대해 실행되고 있는 XML serialization 코드에 문제가 발생할 수도 있습니다.</p>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<p>WCF 4.5에서 기존 XML serialization 코드를 실행할 때 문제가 발생하는 경우 다음 구성 요소를 사용하여 WCF 4에서의 XmlSerializer 동작으로 되돌리십시오.</p>
+<p></p>
+<p>&lt;configuration><br>   &lt;system.xml.serialization><br>      &lt;xmlSerializer useLegacySerializerGeneration="true"/><br>   &lt;/system.xml.serialization><br>&lt;/configuration></p>
+<H4>
+1.3.9. <A name="Windows Presentation Foundation (WPF)">WPF(Windows Presentation Foundation)</A>
+</H4>
+<P>알려진 문제가 없습니다.</P>
+<H4>
+1.3.10 <A name="Windows Workflow Foundation (WF)">Windows WF(Workflow Foundation)</A>
+</H4>
+<P><B> 1.3.10.1 Workflow Identity 매개 변수가 포함된 워크플로를 사용할 경우 호스트가 시작되지 못함 </P></B>
+<p>.NET Framework 4.5에는 SQL Workflow Instance Store에 보관되는 Workflow Identity라는 새로운 워크플로 매개 변수가 있습니다. 이 매개 변수를 포함하는 워크플로를 사용하는데 해당 값이 null이 아닌 경우에는 이 값을 저장할 수 있도록 Instance Store를 업데이트해야 합니다. 그렇지 않으면 호스트가 시작되지 못합니다.</p>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<P>다음 위치에서 스크립트를 실행하여 SQL Workflow Instance Store를 업데이트합니다. </p>
+<P>%windir%\Microsoft.NET\Framework\&lt;version>\SQL\&lt;language>\SqlWorkflowInstanceStoreSchemaUpgrade.sql</p>
+<P></p>
+<P><B> 1.3.10.2 Workflow Designer의 일부 새 기능으로 인해 기존 솔루션에서 문제가 발생할 수 있음 </P></B>
+<p>.NET Framework 4.5에서 Workflow Designer는 다음과 같이 변경되었습니다.</p>
+<ul>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이제 여러 개의 작업을 선택했을 때 바로 가기 메뉴를 사용할 수 있습니다. </li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">작업 디자이너에서 이제 전체 디자이너 대신 디자이너의 헤더를 끌어 당길 수 있습니다. FlowDecision 및 FlowSwitch 디자이너에서는 여전히 전체 디자이너를 끌어 당기게 됩니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">Ctrl 키를 누른 상태에서 다중 선택을 할 때의 동작 변경: .NET Framework 4에서는 마우스를 누를 때 선택이 취소됩니다. .NET Framework 4.5 RC에서는 마우스를 눌렀다 놓을 때 선택이 취소됩니다. 마우스를 누른 상태에서는 선택이 그대로 유지됩니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이제 작업 디자이너가 작업 대리자를 지원합니다. 자세한 내용은 MSDN 라이브러리의 "방법: Workflow Designer에서 작업 대리자 정의 및 사용"을 참조하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이제 변수 및 인수 디자이너가 바로 가기 메뉴를 지원합니다. 바로 가기 메뉴에는 변수 및 인수를 삭제하기 위한 항목 그리고 주석 작업을 위한 항목이 있습니다. 자세한 내용은 MSDN 라이브러리의 "방법: Workflow Designer에서 워크플로에 설명 추가&quot를 참조하십시오. </li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이전에는 MetadataStore 클래스가 일반 형식 정의의 generic 속성에 특성을 추가하는 것을 지원하지 않았습니다. 이제는 지원됩니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이제 ModelItemDictionary 클래스가 null 키를 지원합니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이전에는 모델 트리에 없는 항목이 ModelItem.Parents 속성에 포함되었습니다. 이제는 ModelItem.Parents에 있는 모든 개체가 모델 트리에 있는 유효 개체입니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이전에는 Switch 작업에 대해 디자이너에서 Case를 선택하면 선택한 Case에 있는 작업으로 키보드 포커스가 이동하고 해당 작업이 강조 표시되었습니다. 이제는 해당 작업이 강조 표시되지만 키보드 포커스는 바뀌지 않습니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이전에는 식 텍스트 상자에 한 문자만 입력할 때 디자이너가 값을 Char 형식의 상수로 취급했습니다. 이제는 이 식이 변수 또는 인수 이름으로 취급됩니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이전에는 참조되지 않은 어셈블리와 종속 관계가 있는 참조된 어셈블리에 있는 형식이 형식 브라우저에 표시되었습니다. 이제는 종속 어셈블리를 참조하기 전에는 참조되지 않은 어셈블리와 종속 관계가 있는 형식이 나타나지 않습니다.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">이제 다음 형식 및 멤버는 더 이상 사용되지 않습니다.</li>
+<ul>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">System.Activities.Presentation.Services.ModelChangedEventArgs 클래스에 있는 대부분의 속성이 사용되지 않습니다. 사용되지 않는 속성 대신 ModelChangeInfo 속성을 사용하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">System.Activities.Presentation.DragDropHelper 클래스에서 새로운 다중 선택 기능에 의해 다음 메서드는 더 이상 사용되지 않습니다. </li>
+<ul>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">DoDragMove(WorkflowViewElement, Point) - DoDragMove(IEnumerable&lt;WorkflowViewElement>, Point)를 대신 사용하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">GetDroppedObject(DependencyObject, DragEventArgs, EditingContext) - GetDroppedObjects(DependencyObject, DragEventArgs, EditingContext)를 대신 사용하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">GetDraggedModelItem(DragEventArgs) - GetDraggedModelItems(DragEventArgs)를 대신 사용하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">GetCompositeView(DragEventArgs) - GetCompositeView(WorkflowViewElement)를 대신 사용하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">SetDragDropCompletedEffects(DragEventArgs, DragDropEffects) - SetDragDropMovedViewElements(DragEventArgs, IEnumerable&lt;WorkflowViewElement>)를 대신 사용하십시오.</li>
+<li style= "font-family: 'arial';FONT-SIZE:10pt;">GetDragDropCompletedEffects(DataObject) - GetDragDropMovedViewElements(DataObject)를 대신 사용하십시오.</li></ul></ul></ul>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<P>앞선 목록에서 설명한 각 문제에 대한 해결 방법을 사용합니다.</p>
+<H2>
+2. <A name=".Net Maintenance">.Net 유지 관리</A>
+</H2>
+<P><B> 2.1 Windows 8로 업그레이드할 때 .NET Framework 4 언어 팩이 업데이트되지 않음 </P></B>
+<P>
+<p>Windows 7 운영 체제에서 Windows 8로 업그레이드하는 경우 이전에 컴퓨터에 설치한 .NET Framework 4 언어 팩이 제거되거나 업데이트되지 않습니다. 이 문제는 영어를 포함하지 않는 업그레이드된 Windows 8의 언어와 일치하지 않는 언어 팩에 영향을 줍니다. 예를 들어 영어 버전의 Windows 7 Ultimate와 .NET Framework 4 독일어 언어 팩이 있는 상태에서 시스템을 영어 버전의 Windows 8로 업그레이드하는 경우 언어 팩이 시스템에 남아 있기는 하지만 .NET Framework 4.5로 업데이트되지 않습니다. </p>
+</P>
+<P><B><U>이 문제를 해결하려면</U></B></P>
+<P>
+<p>Windows 8로 업그레이드하기 전에 .NET Framework 4 언어 팩을 제거하거나, 업그레이드한 후에 적절한 Windows 8 언어 팩을 설치합니다.</p>
+</P>
+<H2>
+3. <A name="Related Links">관련 링크</A>
+</H2>
+    <P>© 2012 Microsoft Corporation. All rights reserved.</P>
+<P class="style1"><a id="ctl00_BottomControl1_MSFT_Terms" href="http://msdn.microsoft.com/cc300389.aspx" title="사용 약관">사용 약관</a> | <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx" title="상표">상표</a> | <a href="http://www.microsoft.com/info/privacy.mspx" title="개인 정보 취급 방침">개인 정보 취급 방침</a>
+</P>
+<P> </P>
+</BODY>
+</HTML>
